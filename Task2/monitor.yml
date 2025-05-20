@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: scaletestapp-app-sm
+  namespace: sprint-6
+  labels:
+    release: prometheus-operator
+    serviceMonitorSelector: prometheus
+spec:
+  endpoints:
+    - interval: 10s
+      targetPort: 8080
+      path: /metrics
+  namespaceSelector:
+    matchNames:
+      - sprint-6
+  selector:
+    matchLabels:
+      prometheus-monitored: "true"
