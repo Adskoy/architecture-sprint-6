@@ -1,0 +1,32 @@
+type Query {
+  # получаем инфо по клиенту с возможностью проинклюдать документы и родственников
+  client(id: String!): Client
+  # получаем сразу документы по ид сотрудника
+  documents(clientId: String!): [Document]
+  # получаем сразу родственников по ид сотрудника
+  relatives(clientId: String!): [Relative]
+}
+
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document]
+  relatives: [Relative]
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
